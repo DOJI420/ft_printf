@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_processing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yibn-yah <yibn-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yibn-yah <yibn-yah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 18:24:20 by yibn-yah          #+#    #+#             */
-/*   Updated: 2026/11/14 13:21:41 by yibn-yah         ###   ########.fr       */
+/*   Updated: 2026/11/15 12:14:09 by yibn-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@ int	ft_processing(const char *format, va_list args)
 		printed = ft_print_unsigned(va_arg(args, unsigned int));
 	else if (*format == '%')
 		printed = ft_print_char('%');
+	else
+		printed = -1;
 	return (printed);
 }

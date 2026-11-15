@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yibn-yah <yibn-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yibn-yah <yibn-yah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 19:44:45 by yibn-yah          #+#    #+#             */
-/*   Updated: 2026/11/14 13:04:53 by yibn-yah         ###   ########.fr       */
+/*   Updated: 2026/11/14 20:38:39 by yibn-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int	ft_printf(const char *format, ...)
 	int		count;
 	va_list	args;
 
-	count = 0;
+	if (format == NULL)
+		return (-1);
 	va_start(args, format);
 	count = ft_format(format, args);
 	va_end(args);

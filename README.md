@@ -6,7 +6,7 @@
 
 The project introduces variadic functions in C and teaches how to handle different data types and format specifiers.
 
-The mandatory conversions implemented are:
+mandatory conversions implemented are:
 
 - `%c` : Prints a character.
 - `%s` : Prints a string.
