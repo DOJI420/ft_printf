@@ -3,43 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_format.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yibn-yah <yibn-yah@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yibn-yah <yibn-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 19:53:05 by yibn-yah          #+#    #+#             */
-/*   Updated: 2026/11/15 20:05:24 by yibn-yah         ###   ########.fr       */
+/*   Updated: 2026/11/16 09:16:09 by yibn-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_format(const char *format, va_list args)
+int	ft_format(const char *format, va_list args)
 {
-    int i;
-    int printed;
-    int ret;
+	int	i;
+	int	printed;
+	int	ret;
 
-    i = 0;
-    printed = 0;
-    while (format[i] != '\0')
-    {
-        if (format[i] != '%')
-        {
-            ret = ft_print_char(format[i]);
-            if (ret == -1)
-                return (-1);
-            printed = printed + ret;
-            i++;
-        }
-        else
-        {
-            if (format[i + 1] == '\0')
-                return (-1);
-            ret = ft_processing(&format[i + 1], args);
-            if (ret == -1)
-                return (-1);
-            printed = printed + ret;
-            i = i + 2;
-        }
-    }
-    return (printed);
+	i = 0;
+	printed = 0;
+	while (format[i] != '\0')
+	{
+		if (format[i] != '%')
+			ret = ft_print_char(format[i++]);
+		else
+		{
+			if (format[i + 1] == '\0')
+				return (-1);
+			ret = ft_processing(&format[i + 1], args);
+			if (ret == -1)
+				return (-1);
+			i = i + 2;
+		}
+		if (ret == -1)
+			return (-1);
+		printed = printed + ret;
+	}
+	return (printed);
 }

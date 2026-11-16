@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_processing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yibn-yah <yibn-yah@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yibn-yah <yibn-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 18:24:20 by yibn-yah          #+#    #+#             */
-/*   Updated: 2026/11/15 12:14:09 by yibn-yah         ###   ########.fr       */
+/*   Updated: 2026/11/16 10:43:49 by yibn-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static int	ft_print_unknown(char c)
+{
+	if (write(1, "%", 1) == -1)
+		return (-1);
+	if (write(1, &c, 1) == -1)
+		return (-1);
+	return (2);
+}
 
 int	ft_processing(const char *format, va_list args)
 {
@@ -32,6 +41,6 @@ int	ft_processing(const char *format, va_list args)
 	else if (*format == '%')
 		printed = ft_print_char('%');
 	else
-		printed = -1;
+		printed = ft_print_unknown(*format);
 	return (printed);
 }

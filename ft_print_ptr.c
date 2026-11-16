@@ -6,22 +6,11 @@
 /*   By: yibn-yah <yibn-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 20:03:04 by yibn-yah          #+#    #+#             */
-/*   Updated: 2026/11/14 13:11:07 by yibn-yah         ###   ########.fr       */
+/*   Updated: 2026/11/16 13:40:43 by yibn-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
-
-static int	isptr_null(void *ptr, int printed)
-{
-	if (ptr == NULL)
-	{
-		write(1, "(nil)", 5);
-		printed = 5;
-	}
-	return (printed);
-}
 
 static int	converting(size_t convert, char arr[], int count)
 {
@@ -30,8 +19,9 @@ static int	converting(size_t convert, char arr[], int count)
 	base = "0123456789abcdef";
 	while (convert > 0)
 	{
-		arr[count++] = base[convert % 16];
+		arr[count] = base[convert % 16];
 		convert = convert / 16;
+		count++;
 	}
 	return (count);
 }
@@ -46,7 +36,7 @@ int	ft_print_ptr(void *ptr)
 	count = 0;
 	printed = 0;
 	if (ptr == NULL)
-		return (isptr_null(ptr, printed));
+		return (write(1, "(nil)", 5));
 	convert = (size_t)ptr;
 	if (convert == 0)
 		arr[count++] = '0';
