@@ -3,44 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_processing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yibn-yah <yibn-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yibn-yah <yibn-yah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 18:24:20 by yibn-yah          #+#    #+#             */
-/*   Updated: 2026/11/16 10:43:49 by yibn-yah         ###   ########.fr       */
+/*   Updated: 2026/11/16 22:55:05 by yibn-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_print_unknown(char c)
-{
-	if (write(1, "%", 1) == -1)
-		return (-1);
-	if (write(1, &c, 1) == -1)
-		return (-1);
-	return (2);
-}
-
 int	ft_processing(const char *format, va_list args)
 {
-	int	printed;
-
-	printed = 0;
 	if (*format == 's')
-		printed = ft_print_str(va_arg(args, char *));
+		return (ft_print_str(va_arg(args, char *)));
 	else if (*format == 'x' || *format == 'X')
-		printed = ft_print_hexa(va_arg(args, unsigned int), format);
+		return (ft_print_hexa(va_arg(args, unsigned int), format));
 	else if (*format == 'd' || *format == 'i')
-		printed = ft_print_nbr(va_arg(args, int));
+		return (ft_print_nbr(va_arg(args, int)));
 	else if (*format == 'p')
-		printed = ft_print_ptr(va_arg(args, void *));
+		return (ft_print_ptr(va_arg(args, void *)));
 	else if (*format == 'c')
-		printed = ft_print_char(va_arg(args, int));
+		return (ft_print_char(va_arg(args, int)));
 	else if (*format == 'u')
-		printed = ft_print_unsigned(va_arg(args, unsigned int));
+		return (ft_print_unsigned(va_arg(args, unsigned int)));
 	else if (*format == '%')
-		printed = ft_print_char('%');
+		return (ft_print_char('%'));
 	else
-		printed = ft_print_unknown(*format);
-	return (printed);
+	{
+		if (ft_print_char('%') == -1)
+			return (-1);
+		if (ft_print_char(*format) == -1)
+			return (-1);
+		return (2);
+	}
 }

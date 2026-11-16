@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_str.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yibn-yah <yibn-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yibn-yah <yibn-yah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 12:16:07 by yibn-yah          #+#    #+#             */
-/*   Updated: 2026/11/16 10:45:38 by yibn-yah         ###   ########.fr       */
+/*   Updated: 2026/11/16 22:36:26 by yibn-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,16 @@
 
 int	ft_print_str(char *str)
 {
-	int		len;
+	int		printed;
 
-	len = 0;
+	printed = 0;
 	if (str == NULL)
 		return (write(1, "(null)", 6));
-	while (str && str[len] != '\0')
-		len += write(1, &str[len], 1);
-	return (len);
+	while (str[printed] != '\0')
+	{
+		if (write(1, &str[printed], 1) == -1)
+			return (-1);
+		printed++;
+	}
+	return (printed);
 }

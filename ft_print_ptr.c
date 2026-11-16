@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_ptr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yibn-yah <yibn-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yibn-yah <yibn-yah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 20:03:04 by yibn-yah          #+#    #+#             */
-/*   Updated: 2026/11/16 13:40:43 by yibn-yah         ###   ########.fr       */
+/*   Updated: 2026/11/16 22:36:04 by yibn-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ int	ft_print_ptr(void *ptr)
 	arr[count++] = 'x';
 	arr[count++] = '0';
 	while (count > 0)
-		printed = printed + ft_print_char(arr[--count]);
+	{
+		if (ft_print_char(arr[--count]) == -1)
+			return (-1);
+		printed++;
+	}
 	return (printed);
 }
