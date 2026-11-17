@@ -6,7 +6,7 @@
 /*   By: yibn-yah <yibn-yah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 11:51:32 by yibn-yah          #+#    #+#             */
-/*   Updated: 2026/11/16 22:37:28 by yibn-yah         ###   ########.fr       */
+/*   Updated: 2026/11/17 10:19:17 by yibn-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int	ft_print_nbr(int n)
 		ft_print_nbr(n / 10);
 		ft_print_nbr(n % 10);
 	}
-	else if (ft_print_char(n + '0') == -1)
-		return(-1);
+	else
+		ft_print_char(n + '0');
 	count = count + count_n(n);
 	return (count);
 }

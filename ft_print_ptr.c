@@ -6,7 +6,7 @@
 /*   By: yibn-yah <yibn-yah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 20:03:04 by yibn-yah          #+#    #+#             */
-/*   Updated: 2026/11/16 22:36:04 by yibn-yah         ###   ########.fr       */
+/*   Updated: 2026/11/17 10:19:14 by yibn-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,6 @@ int	ft_print_ptr(void *ptr)
 	arr[count++] = 'x';
 	arr[count++] = '0';
 	while (count > 0)
-	{
-		if (ft_print_char(arr[--count]) == -1)
-			return (-1);
-		printed++;
-	}
+		printed = printed + ft_print_char(arr[--count]);
 	return (printed);
 }

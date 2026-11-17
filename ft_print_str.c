@@ -6,7 +6,7 @@
 /*   By: yibn-yah <yibn-yah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 12:16:07 by yibn-yah          #+#    #+#             */
-/*   Updated: 2026/11/16 22:36:26 by yibn-yah         ###   ########.fr       */
+/*   Updated: 2026/11/17 10:19:12 by yibn-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,12 @@
 
 int	ft_print_str(char *str)
 {
-	int		printed;
+	int		len;
 
-	printed = 0;
+	len = 0;
 	if (str == NULL)
 		return (write(1, "(null)", 6));
-	while (str[printed] != '\0')
-	{
-		if (write(1, &str[printed], 1) == -1)
-			return (-1);
-		printed++;
-	}
-	return (printed);
+	while (str && str[len] != '\0')
+		len += write(1, &str[len], 1);
+	return (len);
 }

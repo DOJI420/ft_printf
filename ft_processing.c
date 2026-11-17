@@ -6,34 +6,41 @@
 /*   By: yibn-yah <yibn-yah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 18:24:20 by yibn-yah          #+#    #+#             */
-/*   Updated: 2026/11/16 22:55:05 by yibn-yah         ###   ########.fr       */
+/*   Updated: 2026/11/17 10:20:18 by yibn-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+static int	ft_print_unknown(char c)
+{
+	if (write(1, "%", 1) == -1)
+		return (-1);
+	if (write(1, &c, 1) == -1)
+		return (-1);
+	return (2);
+}
+
 int	ft_processing(const char *format, va_list args)
 {
+	int	printed;
+
+	printed = 0;
 	if (*format == 's')
-		return (ft_print_str(va_arg(args, char *)));
+		printed = ft_print_str(va_arg(args, char *));
 	else if (*format == 'x' || *format == 'X')
-		return (ft_print_hexa(va_arg(args, unsigned int), format));
+		printed = ft_print_hexa(va_arg(args, unsigned int), format);
 	else if (*format == 'd' || *format == 'i')
-		return (ft_print_nbr(va_arg(args, int)));
+		printed = ft_print_nbr(va_arg(args, int));
 	else if (*format == 'p')
-		return (ft_print_ptr(va_arg(args, void *)));
+		printed = ft_print_ptr(va_arg(args, void *));
 	else if (*format == 'c')
-		return (ft_print_char(va_arg(args, int)));
+		printed = ft_print_char(va_arg(args, int));
 	else if (*format == 'u')
-		return (ft_print_unsigned(va_arg(args, unsigned int)));
+		printed = ft_print_unsigned(va_arg(args, unsigned int));
 	else if (*format == '%')
-		return (ft_print_char('%'));
+		printed = ft_print_char('%');
 	else
-	{
-		if (ft_print_char('%') == -1)
-			return (-1);
-		if (ft_print_char(*format) == -1)
-			return (-1);
-		return (2);
-	}
+		printed = ft_print_unknown(*format);
+	return (printed);
 }
