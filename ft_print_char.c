@@ -6,7 +6,7 @@
 /*   By: yibn-yah <yibn-yah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 20:01:39 by yibn-yah          #+#    #+#             */
-/*   Updated: 2026/11/17 10:19:23 by yibn-yah         ###   ########.fr       */
+/*   Updated: 2026/11/19 11:05:30 by yibn-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 
 int	ft_print_char(char c)
 {
-	return (write(1, &c, 1));
+	if (write(1, &c, 1) == -1)
+		return (-1);
+	return (1);
 }

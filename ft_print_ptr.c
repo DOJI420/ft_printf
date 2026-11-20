@@ -6,7 +6,7 @@
 /*   By: yibn-yah <yibn-yah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 20:03:04 by yibn-yah          #+#    #+#             */
-/*   Updated: 2026/11/17 10:19:14 by yibn-yah         ###   ########.fr       */
+/*   Updated: 2026/11/19 10:40:37 by yibn-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,20 @@ int	ft_print_ptr(void *ptr)
 	count = 0;
 	printed = 0;
 	if (ptr == NULL)
-		return (write(1, "(nil)", 5));
+	{
+		if (write(1, "(nil)", 5) == -1)
+			return (-1);
+		return (5);
+	}
 	convert = (size_t)ptr;
-	if (convert == 0)
-		arr[count++] = '0';
 	count = converting(convert, arr, count);
 	arr[count++] = 'x';
 	arr[count++] = '0';
 	while (count > 0)
-		printed = printed + ft_print_char(arr[--count]);
+	{
+		if (ft_print_char(arr[--count]) == -1)
+			return (-1);
+		printed++;
+	}
 	return (printed);
 }

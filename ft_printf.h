@@ -6,7 +6,7 @@
 /*   By: yibn-yah <yibn-yah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/03 11:27:19 by yibn-yah          #+#    #+#             */
-/*   Updated: 2026/11/17 10:20:31 by yibn-yah         ###   ########.fr       */
+/*   Updated: 2026/11/20 11:25:32 by yibn-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdarg.h>
+# include <limits.h>
 
 int	ft_print_nbr(int n);
 int	ft_print_char(char c);

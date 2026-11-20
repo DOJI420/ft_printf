@@ -6,50 +6,35 @@
 /*   By: yibn-yah <yibn-yah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 11:51:32 by yibn-yah          #+#    #+#             */
-/*   Updated: 2026/11/17 10:19:17 by yibn-yah         ###   ########.fr       */
+/*   Updated: 2026/11/20 08:29:49 by yibn-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	count_n(int n)
-{
-	int	count;
-
-	count = 0;
-	if (n == 0)
-		count = 1;
-	while (n != 0)
-	{
-		n = n / 10;
-		count++;
-	}
-	return (count);
-}
-
 int	ft_print_nbr(int n)
 {
-	int	count;
+	long	nb;
+	int		count;
+	int		ret;
 
+	nb = n;
 	count = 0;
-	if (n == -2147483648)
+	if (nb < 0)
 	{
-		write(1, "-2147483648", 11);
-		return (11);
-	}
-	if (n < 0)
-	{
+		if (ft_print_char('-') == -1)
+			return (-1);
 		count++;
-		ft_print_char('-');
-		n = -n;
+		nb = -nb;
 	}
-	if (n >= 10)
+	if (nb >= 10)
 	{
-		ft_print_nbr(n / 10);
-		ft_print_nbr(n % 10);
+		ret = ft_print_nbr(nb / 10);
+		if (ret == -1)
+			return (-1);
+		count += ret;
 	}
-	else
-		ft_print_char(n + '0');
-	count = count + count_n(n);
-	return (count);
+	if (ft_print_char((nb % 10) + '0') == -1)
+		return (-1);
+	return (count + 1);
 }

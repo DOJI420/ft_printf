@@ -6,7 +6,7 @@
 /*   By: yibn-yah <yibn-yah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 19:44:06 by yibn-yah          #+#    #+#             */
-/*   Updated: 2026/11/15 12:09:08 by yibn-yah         ###   ########.fr       */
+/*   Updated: 2026/11/20 09:08:00 by yibn-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_print_hexa(unsigned int num, const char *format)
 {
 	char	*base;
-	char	arr[11];
+	char	arr[8];
 	int		count;
 	int		printed;
 
@@ -33,6 +33,10 @@ int	ft_print_hexa(unsigned int num, const char *format)
 		num = num / 16;
 	}
 	while (count > 0)
-		printed = printed + ft_print_char(arr[--count]);
+	{
+		if (ft_print_char(arr[--count]) == -1)
+			return (-1);
+		printed++;
+	}
 	return (printed);
 }

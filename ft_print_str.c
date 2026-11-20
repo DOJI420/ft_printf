@@ -6,7 +6,7 @@
 /*   By: yibn-yah <yibn-yah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 12:16:07 by yibn-yah          #+#    #+#             */
-/*   Updated: 2026/11/17 10:19:12 by yibn-yah         ###   ########.fr       */
+/*   Updated: 2026/11/20 12:19:03 by yibn-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,18 @@
 
 int	ft_print_str(char *str)
 {
-	int		len;
+	size_t	len;
+	ssize_t	ret;
 
-	len = 0;
 	if (str == NULL)
-		return (write(1, "(null)", 6));
-	while (str && str[len] != '\0')
-		len += write(1, &str[len], 1);
-	return (len);
+		str = "(null)";
+	len = 0;
+	while (str[len])
+		len++;
+	if (len > INT_MAX)
+		return (-1);
+	ret = write(1, str, len);
+	if (ret == -1)
+		return (-1);
+	return ((int)ret);
 }

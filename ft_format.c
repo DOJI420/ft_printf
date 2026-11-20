@@ -6,7 +6,7 @@
 /*   By: yibn-yah <yibn-yah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 19:53:05 by yibn-yah          #+#    #+#             */
-/*   Updated: 2026/11/17 10:18:31 by yibn-yah         ###   ########.fr       */
+/*   Updated: 2026/11/20 12:23:46 by yibn-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,11 @@ int	ft_format(const char *format, va_list args)
 			if (format[i + 1] == '\0')
 				return (-1);
 			ret = ft_processing(&format[i + 1], args);
-			if (ret == -1)
-				return (-1);
-			i = i + 2;
+			i += 2;
 		}
-		if (ret == -1)
+		if (ret == -1 || printed > INT_MAX - ret)
 			return (-1);
-		printed = printed + ret;
+		printed += ret;
 	}
 	return (printed);
 }
